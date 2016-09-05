@@ -88,3 +88,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 define('CONT_WEBSITE', '1');
 define('CONT_FACEBOOK', '2');
 define('CONT_GOOGLE', '3');
+
+define('ADMIN','1');
+define('MODERATOR','2');
+define('USER','3');

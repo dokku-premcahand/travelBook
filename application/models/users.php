@@ -15,7 +15,8 @@ class Users extends CI_Model {
         return $result[0];
     }
 
-    public function socialLogin($data){
+    public function socialLogin($data)
+    {
         $date = date("Y-m-d H:i:s");
         $sql = "INSERT INTO users VALUES ('','".$data['email']."','','".$data['registration_type']."','".$date."','".$date."');";
         $result = $this->db->query($sql);
@@ -24,7 +25,8 @@ class Users extends CI_Model {
         return $userData;
     }
 
-    public function checkEmail($emailId){
+    public function checkEmail($emailId)
+    {
         $sql = "SELECT count(*) AS count FROM users WHERE username LIKE '%".$emailId."%'";
         $query = $this->db->query($sql);
         $result = $query->result();
@@ -40,7 +42,8 @@ class Users extends CI_Model {
         return $result[0];
     }
 
-    public function getUserFromEmailId($emailId){
+    public function getUserFromEmailId($emailId)
+    {
         $sql = "SELECT * FROM users WHERE username LIKE '%".$emailId."%'";
         $query = $this->db->query($sql);
         $result = $query->result();
@@ -73,25 +76,25 @@ class Users extends CI_Model {
         }
     }
 
-    public function uploadProfilPicture($fileName){
+    public function uploadProfilPicture($fileName)
+    {
         $config['upload_path']          = './public/images/profile-images';
         $config['allowed_types']        = 'jpg';
         $config['max_size']             = 10240;
         $config['file_name']            = $fileName;
         $this->load->library('upload', $config);
 
-        if(!$this->upload->do_upload('profile_picture'))
-        {
+        if(!$this->upload->do_upload('profile_picture')){
             $data['error'] = array('error' => $this->upload->display_errors());
         }
-        else
-        {
+        else{
             $data['fileData'] = $this->upload->data();
         }
         return $data;
     }
 
-    public function verifyEmailId($string){
+    public function verifyEmailId($string)
+    {
         $sql = "SELECT count(id) AS count,id FROM users WHERE activation_link LIKE '%".$string."%'";
         $query = $this->db->query($sql);
         $result = $query->result();
